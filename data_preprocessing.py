@@ -19,8 +19,8 @@ def transform_data(generated_dataset_path, new_dataset_path):
     all_paths = list(generated_dataset_path.iterdir())
 
     source_paths = [p for p in all_paths if 'tr' not in str(p)]
-    neg_paths = [p for p in all_paths if 'tr' in str(p) and '-' in str(p)]
-    pos_paths = [p for p in all_paths if 'tr' in str(p) and '-' not in str(p)]
+    neg_paths = [p for p in all_paths if 'tr' in str(p.name) and '-' in str(p.name)]   # if tr word and - minus symbol in filename
+    pos_paths = [p for p in all_paths if 'tr' in str(p.name) and '-' not in str(p.name)]
 
     len(source_paths), len(neg_paths), len(pos_paths)
 
@@ -37,7 +37,7 @@ def main():
     generated_dataset_path = Path('generated_ffhq_age/images')
     new_dataset_path = Path('ffhq_smile_pix2pixHD')
     # convert data in pix2poix format
-    transform_data(generated_dataset_path, new_dataset_path):
+    transform_data(generated_dataset_path, new_dataset_path)
 
 if __name__ == "__main__":
     main()
